@@ -1,0 +1,43 @@
+import {takeEvery, fork, call, put} from 'redux-saga/effects';
+import * as types from '../actions/action_types/event';
+import * as api from '../api/event';
+
+// const sess_id = (state) => state.auth.sess._id;
+function* getAllEvents(action) {
+  // try to make the api call
+  try {
+    // yield the api responsse into data
+    const data = yield call(api.getAllEvents);
+    yield put({
+      type: types.GET_EVENTS_SUCCESS,
+      payload: data.data,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+function* createEvent(action) {
+  // try to make the api call
+  try {
+    // yield the api responsse into data
+    // eslint-disable-next-line no-unused-vars
+    const data = yield call(
+      api.createEvent,
+      action.payload.file,
+      action.payload.data
+    );
+  } catch (e) {
+    console.log(e);
+  }
+}
+function* watchGetAllEvents() {
+  // create watcher of fetchData function
+  yield takeEvery(types.GET_EVENTS_LOADING, getAllEvents);
+}
+function* watchCreateEvents() {
+  // create watcher of fetchData function
+  yield takeEvery(types.CREATE_EVENTS_LOADING, createEvent);
+}
+const eventSaga = [fork(watchGetAllEvents), fork(watchCreateEvents)];
+
+export default eventSaga;

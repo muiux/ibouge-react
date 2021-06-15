@@ -1,0 +1,4 @@
+To start webservers:
+
+[02:03:55]:ubuntu@ip-172-31-12-255:165:/srv/www/app/ibouge-react$ while true;do npm start >> /var/log/ibouge/ibouge-react.log 2>&1;done
+[02:04:05]:ubuntu@ip-172-31-12-255:170:/srv/www/app/ibouge-react/client$ while true;do DANGEROUSLY_DISABLE_HOST_CHECK=true serve -s build;done

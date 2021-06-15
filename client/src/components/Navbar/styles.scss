@@ -1,0 +1,17 @@
+.user-list{
+    padding: 10px;
+    width: max-content;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: 0 0 3px rgba(0,0,0,.7);
+    border-radius: 10px;
+    li{
+        padding: 0 5px;
+        list-style: none;
+        a{
+            color: black;
+        }
+    }
+}
